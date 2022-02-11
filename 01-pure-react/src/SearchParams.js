@@ -1,7 +1,7 @@
 import { async } from "q";
 import {useState, useEffect} from "react";
-import Pet from "./Pet"
 import useBreedList from "./useBreedList";
+import Results from "./Results";
 
 
 const ANIMALS = ["dog", "bird", "rabbit", "cat", "reptile"]
@@ -11,7 +11,7 @@ const SearchParams = () => {
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
   const [pets, setPets] = useState([]);
-  const breeds = useBreedList(animal);
+  const [breeds] = useBreedList(animal);
 
 useEffect(() => {
   requestPets();
@@ -29,7 +29,12 @@ useEffect(() => {
 
   return (
     <div className="search-params">
-      <form>
+      <form
+      onSubmit={e => {
+        e.preventDefault();
+        requestPets();
+      }}
+      >
         <label htmlFor="location">
           Location
         <input
@@ -77,11 +82,7 @@ useEffect(() => {
         </label>
         <button>Submit</button>
       </form>
-      {
-        pets.map(pet => (
-          <Pet name={pet.name} animal={pet.animal} breed={pet.breed} key={pet.id}/>
-        ))
-      }
+      <Results pets = {pets}/>
     </div>
   );
 };
