@@ -1,7 +1,10 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 // import Pet from "./Pet";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Details from "./Details";
 import SearchParams from "./SearchParams";
+
 
 // const App = () => {
 //   return React.createElement("div", {}, [
@@ -24,11 +27,23 @@ const App = () => {
         {/* <Pet name="Luna" type="Dog" breed="Havanese"/>
         <Pet name="Hopi" type="Rabbit" breed="English Angora"/>
         <Pet name="Cool" type="Cat" breed="Chartreux"/> */}
-    <SearchParams/>
+      <Router>
+        <Switch>
+          <Route path="/details/:id">
+            <Details/>
+          </Route>
+          <Route path="/">
+            <SearchParams/>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 };
 
-ReactDOM.render(<StrictMode>
-  <App/>
-  </StrictMode>, document.getElementById("root"));
+ReactDOM.render(
+  <StrictMode>
+    <App/>
+  </StrictMode>,
+  document.getElementById("root")
+);
