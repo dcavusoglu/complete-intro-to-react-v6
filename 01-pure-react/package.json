@@ -33,5 +33,6 @@
   },
   "browserslist": [
     "last 2 Chrome versions"
-  ]
+  ],
+  "homepage": "https://dcavusoglu.github.io/pure-react"
 }
